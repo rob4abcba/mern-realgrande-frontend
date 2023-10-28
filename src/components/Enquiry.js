@@ -4,8 +4,8 @@ import emailjs from "@emailjs/browser";
 
 const Enquiry = () => {
   let [enquiryObj, setEnquiryObj] = useState({
-    ename: "",
-    email: "",
+    ename: sessionStorage.getItem("custname"),
+    email: sessionStorage.getItem("custemail"),
     remarks: "",
   });
   let [successMsg, seSuccessMsg] = useState("");
@@ -39,10 +39,10 @@ const Enquiry = () => {
 
     emailjs
       .send(
-        "<YOUR_SERVICE_ID>",
-        "<YOUR_TEMPLATE_ID>",
+        "<process.env.YOUR_SERVICE_ID>",
+        "<process.env.YOUR_TEMPLATE_ID>",
         templateParams,
-        "<YOUR_PUBLIC_KEY>"
+        "<process.env.YOUR_PUBLIC_KEY>"
       )
       .then(
         (response) => {
@@ -69,8 +69,9 @@ const Enquiry = () => {
           </label>
           <input
             type="text"
-            onChange={changeHandler}
+            // onChange={changeHandler}
             name="ename"
+            value={sessionStorage.getItem("custname")}
             id=""
             className="form-control"
             placeholder=""
@@ -84,8 +85,9 @@ const Enquiry = () => {
           </label>
           <input
             type="text"
-            onChange={changeHandler}
+            // onChange={changeHandler}
             name="email"
+            value={sessionStorage.getItem("custemail")}
             id=""
             className="form-control"
             placeholder=""
