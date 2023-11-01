@@ -18,9 +18,15 @@ const Enquiry = () => {
     e.preventDefault();
     console.log(enquiryObj);
     try {
-      let resp = await axios.post("http://localhost:3002/register", {
-        ...enquiryObj,
-      });
+      // let resp = await axios.post("http://localhost:3002/register", {
+      //   ...enquiryObj,
+      // });
+      let resp = await axios.post(
+        process.env.REACT_APP_BACKEND_URL + "register",
+        {
+          ...enquiryObj,
+        }
+      );
       let data = await resp.data;
       console.log(data);
       seSuccessMsg(
